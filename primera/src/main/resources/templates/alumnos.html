@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Alumnos</title>
+</head>
+<body>
+    <h1>Listado de Alumnos</h1>
+    
+    <ul>
+        <!-- Iterar sobre los alumnos y mostrar sus datos -->
+        <li th:each="alumno : ${alumnos}" th:text="${alumno}"></li>
+    </ul>
+
+    <!-- Enlace para ir al formulario de registro -->
+    <a href="/registro">Registrar un nuevo alumno</a>
+</body>
+</html>
