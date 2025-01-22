@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PRODUCTOS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col-2">
+        </div>
+
+        <div class="col-8">
+            <!-- Tabla de productos -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Aquí se recorre la lista de productos -->
+                    <tr th:each="product : ${product}">
+                        <th scope="row" th:text="${product.id}"></th>
+                        <td th:text="${product.title}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.quantity}"></td>
+                        <td>
+                            <!-- Ver producto -->
+                            <a class="btn btn-primary" th:href="@{/products/{id}/view(id=${product.id})}">Ver producto</a>
+                             <!-- Editar producto -->
+                            <a class="btn btn-success" th:href="@{/products/{id}/edit(id=${product.id})}">Editar producto</a>
+                             <!-- Borrar producto -->
+                            <a class="btn btn-danger" th:href="@{/products/{id}/delete(id=${product.id})}">Borrar producto</a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <!-- Botón para agregar un nuevo producto -->
+            <a class="btn btn-primary" href="/products/new">Nuevo Producto</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
