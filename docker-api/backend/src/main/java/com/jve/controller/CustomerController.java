@@ -21,7 +21,7 @@ public class CustomerController {
 	}
 
 	@GetMapping
-	public List<Product> findAll(@PathVariable Long id) {
+	public List<Product> findAll() {
 		return repository.findAll();
 	}
 }

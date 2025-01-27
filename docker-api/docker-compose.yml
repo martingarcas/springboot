@@ -10,7 +10,7 @@ services:
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks:
       - backend-network  
 
@@ -22,7 +22,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/project-docker
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
       - "9000:9000"
     depends_on:
@@ -30,12 +30,17 @@ services:
     networks:
       - backend-network
 
+  front:
+    build:
+      context: ./frontend
+    container_name: fronted-container
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - backend-network
+
 networks:
   backend-network:
-    driver: bridge      
-
-#  front:
-#    build:
-#      context: ./front
-#    ports:
-#      - "8080:80"
+    driver: bridge 
