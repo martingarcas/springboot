@@ -2,22 +2,17 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:8
+    image: mrtncalderon9/db:1.0
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: project-docker
-    volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "3307:3306"
-    networks:
-      - backend-network  
+      - "3307:3306"  
 
   backend:
-    build:
-      context: ./backend
-    container_name: springboot-container
+    image: mrtncalderon9/backend:1.0
+    container_name: backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/project-docker
       SPRING_DATASOURCE_USERNAME: root
@@ -27,20 +22,11 @@ services:
       - "9000:9000"
     depends_on:
       - db
-    networks:
-      - backend-network
 
   front:
-    build:
-      context: ./frontend
+    image: mrtncalderon9/frontend:1.0
     container_name: fronted-container
     ports:
       - "8080:80"
     depends_on:
       - backend
-    networks:
-      - backend-network
-
-networks:
-  backend-network:
-    driver: bridge 
