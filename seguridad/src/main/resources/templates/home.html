@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+</head>
+<body>
+    <h1>¡Hola, <span th:text="${username}">Usuario</span>!</h1>
+    <p>Dato personalizado: <span th:text="${perro}">Perra</span></p>
+    <a href="/admin">Panel de administración</a>
+
+    <form action="/logout" method="post" th:action="@{/logout}">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</body>
+</html>

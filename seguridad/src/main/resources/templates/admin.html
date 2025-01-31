@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ruta Admin</title>
+</head>
+<body>
+    <h1>Hola, esta ruta es para el admin</h1>
+    <a href="/home">Volver a la Home</a>
+
+    <form action="/logout" method="post" th:action="@{/logout}">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</body>
+</html>
