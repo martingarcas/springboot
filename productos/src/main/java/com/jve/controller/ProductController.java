@@ -31,7 +31,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody Product product) {
-        if (product.getTitle() == null || product.getPrice() == null) { // Validación básica
+        if (product.getTitle() == null || product.getPrice() == null) {
             return ResponseEntity.badRequest().build(); // Devuelve 400 Bad Request si los datos no son válidos
         }
         Product savedProduct = repository.save(product);
